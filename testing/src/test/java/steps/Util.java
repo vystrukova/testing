@@ -9,7 +9,7 @@ public class Util {
     public String getPropertyValue(String propertyName){
         String propertyValue = "";
         Properties properties = new Properties();
-        try(FileInputStream inputStream = new FileInputStream("/Users/valeriia/Downloads/Desktop/15bilet/zad/src/test/resources/my.properties")) {
+        try(FileInputStream inputStream = new FileInputStream("/Users/valeriia/Documents/Intellij IDEA Projects/testing/testing/src/test/resources/my.properties")) {
             properties.load(inputStream);
             propertyValue = properties.getProperty(propertyName);
         } catch (IOException e) {
