@@ -12,33 +12,39 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MyStepdefs {
-    @Given("I visit passport.yandex.ru page")
-    public void iVisitPassportYandexRuPage() {
+    @Given("I visit mail.yandex.ru page")
+    public void iVisitMailYandexRuPage() {
         open(new Util().getPropertyValue("page"));
     }
 
-    @When("I enter username in the username field")
+    @When("I press the Login button")
+    public void iPressTheLoginButton() {
+        $(byXpath("//button[@type=\"button\"]")).click();
+    }
+
+    @And("I enter username in the username field")
     public void iEnterUsernameInTheUsernameField() {
-        $(byName(new Util().getPropertyValue("login"))).sendKeys(new Util().getPropertyValue("login1"));
+        $(byXpath("//input[@name=\"login\"]")).sendKeys(new Util().getPropertyValue("email"));
     }
 
     @And("I press the Next button")
     public void iPressTheNextButton() {
-        $(byCssSelector("button[class='Button2 Button2_size_l Button2_view_action Button2_width_max Button2_type_submit']")).click();
+        $(byXpath("//*[@id=\"passp:sign-in\"]")).click();
     }
 
     @And("I enter password in the password field")
     public void iEnterPasswordInThePasswordField() {
-        $(byName(new Util().getPropertyValue("pas"))).sendKeys(new Util().getPropertyValue("mypas"));
+        $(byXpath("//input[@name=\"passwd\"]")).sendKeys(new Util().getPropertyValue("password"));
     }
 
     @And("I press Next button")
     public void iPressNextButton() {
-        $(byCssSelector("button[class='Button2 Button2_size_l Button2_view_action Button2_width_max Button2_type_submit']")).click();
+        $(byXpath("//button[@type=\"submit\"]")).click();
     }
 
     @Then("I should see the mail Yandex page")
     public void iShouldSeeTheMailYandexPage() {
         $(By.cssSelector("[href=\"#compose\"]")).shouldBe(Condition.visible);
     }
+
 }
